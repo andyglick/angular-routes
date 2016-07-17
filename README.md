@@ -5,11 +5,11 @@ interviews, training or just experimenting. This demo application uses:
 
 * AngularJS-2 - UI framework
 * Spring - Dependency injection
+* Springboot is being used to configure application contexts, it may be too heavyweight
 * Bootstrap - CSS styling
-* Selenium - Control a web browser for UI testing (Latest version of FF is not supported yet, Please install Firefox 46.0 or 
-lower to run cucumber UI tests)
+* Selenium - Control a web browser for UI testing bumped version to 2.53.1 ought to be compatible with most recent Firefox versions.
 * Cucumber - Behavior Based Development
-* JUnit - Unit testing
+* JUnit - Used as a test initiator for Unit, Integration and UI tests
 
 There is a single page in the application with one section that lets
 you increment a counter and another that lets you add two numbers. Both
