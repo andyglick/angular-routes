@@ -1,10 +1,14 @@
 target/
-demo-angular2.iml
-demo-angular2.ipr
-demo-angular2.iws
+
+.idea/
+*.iml
+*.ipr
+*.iws
+atlassian-ide-plugin.xml
+
 src/main/resources/static/app/*.js
 src/main/resources/static/app/*.js.map
 src/main/resources/static/node_modules
-.DS_Store
 src/main/resources/static/typings/
 
+.DS_Store

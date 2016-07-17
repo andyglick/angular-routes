@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration scan="true">
-    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework" level="DEBUG"/>
     <root level="INFO"/>
 
 </configuration>

@@ -1,39 +1,37 @@
 package net.xeric.demos.config;
 
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 //@Configuration
 //@EnableWebMvc
 @ComponentScan(basePackages = "net.xeric.demos.controllers")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+	@SuppressWarnings("WeakerAccess")
+  static Map<String, String> resourceHandlerToResourceLocation = new LinkedHashMap<>();
+
+	static {
+		resourceHandlerToResourceLocation.put("/webjars*", "classpath:/META-INF/resources/webjars/");
+		resourceHandlerToResourceLocation.put("/images*","classpath:/static/images/");
+		resourceHandlerToResourceLocation.put("/css*", "classpath:/static/css/");
+		resourceHandlerToResourceLocation.put("/js*", "classpath:/static/js/");
+		resourceHandlerToResourceLocation.put("/node_modules*", "classpath:/static/node_modules/");
+		resourceHandlerToResourceLocation.put("/templates/**", "classpath:/templates/");
+	}
+	
 	@Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        if (!registry.hasMappingForPattern("/webjars*")) {
-            registry.addResourceHandler("/webjars*").addResourceLocations("classpath:/META-INF/resources/webjars/");
-        }
-        if (!registry.hasMappingForPattern("/images*")) {
-            registry.addResourceHandler("/images*").addResourceLocations("classpath:/static/images/");
-        }
-        if (!registry.hasMappingForPattern("/css*")) {
-            registry.addResourceHandler("/css*").addResourceLocations("classpath:/static/css/");
-        }
-        if (!registry.hasMappingForPattern("/js*")) {
-            registry.addResourceHandler("/js*").addResourceLocations("classpath:/static/js/");
-        }
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        if (!registry.hasMappingForPattern("/node_modules*")) {
-            registry.addResourceHandler("/node_modules*").addResourceLocations("classpath:/static/node_modules/");
-        }
+		Set<String> keySet = resourceHandlerToResourceLocation.keySet();
 
-        if (!registry.hasMappingForPattern("/templates/**")) {
-            registry.addResourceHandler("/templates/**").addResourceLocations("classpath:/templates/");
-        }
-
-    }
+    keySet.stream().filter(key -> !registry.hasMappingForPattern(key)).forEach(key -> {
+      registry.addResourceHandler(key).addResourceLocations(resourceHandlerToResourceLocation.get(key));
+    });
+	}
 }

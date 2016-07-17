@@ -1,7 +1,7 @@
 package net.xeric.demos;
 
 /**
- * Created by markshead on 4/2/16.
+ * @author markshead
  */
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,4 +10,3 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = "net.xeric.demos")
 public class CucumberConfiguration {
 }
-
